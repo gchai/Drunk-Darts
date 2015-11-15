@@ -1,3 +1,5 @@
+#include <rgb_lcd.h>
+
 /*
   Hello World.ino
   2013 Copyright (c) Seeed Technology Inc.  All right reserved.
@@ -23,7 +25,6 @@
 */
 
 #include <Wire.h>
-#include "rgb_lcd.h"
 
 rgb_lcd lcd;
 
@@ -53,13 +54,19 @@ void loop()
     lcd.setCursor(0, 1);
     int sensorReading = analogRead(analogPin);
     if (sensorReading > 750){
+    lcd.clear();
     int ppm = map(sensorReading, 750, 1024, 200 ,800);
-    int BAC = ppm/2600;
-    
+    float BAC = ppm/2600;
+    //float BAC = ppm;
     // print the number of seconds since reset:
+    lcd.print(".");
+    lcd.setCursor(1,0);
     lcd.print(BAC);}
     else{
-      lcd.print("BAC is too low");
+      lcd.clear();
+      lcd.print(
+        "BAC is too low");
+        //sensorReading);
     }
 
     delay(100);

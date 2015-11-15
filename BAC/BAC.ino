@@ -55,15 +55,16 @@ void loop()
     int sensorReading = analogRead(analogPin);
     if (sensorReading > 750){
     lcd.clear();
-    int ppm = map(sensorReading, 750, 1024, 200 ,800);
+    unsigned int ppm = map(sensorReading, 750, 1024, 200 ,800);
     //float BAC = ppm/2600;
     //int BAC = ppm;
-    int temp=ppm*100;
-    int BAC=temp/26;
+    //int BAC = ppm*100;
+    //unsigned int BAC=temp/26;
     // print the number of seconds since reset:
     //lcd.print(".");
     //lcd.setCursor(1,0);
-    lcd.print(BAC);}
+    lcd.print(ppm*100/26);}
+    //lcd.print(BAC);}
     else{
       lcd.clear();
       lcd.print(

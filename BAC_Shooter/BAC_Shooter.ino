@@ -15,6 +15,8 @@ int previous = 1;    // the previous reading from the input pin
 long time = 0;         // the last time the output pin was toggled
 long debounce = 200;   // the debounce time, increase if the output flickers
 int loopEngaged = 0;
+int modepin = 12;
+int mode = HIGH;
 
 void setup() 
 {
@@ -22,6 +24,8 @@ void setup()
   Serial.begin(9600);
   pinMode(diagpin, OUTPUT);
   pinMode(inpin, INPUT);
+  pinMode(modepin, INPUT);
+  mode = modepin;
     // set up the LCD's number of columns and rows:
     lcd.begin(16, 2);
     
@@ -32,13 +36,10 @@ void setup()
     lcd.print("BAC:");
     delay(1000);
     Wire.begin();
-}
 
-void loop() 
-{
-    // set the cursor to column 0, line 1
-    // (note: line 1 is the second row, since counting begins with 0):
-    lcd.setCursor(0, 1);
+    if(mode=HIGH)
+    {
+          lcd.setCursor(0, 1);
     int sensorReading = analogRead(analogPin);
         if (sensorReading > 750){
         int r,g,b;
@@ -83,6 +84,20 @@ void loop()
         }
 
     delay(100);
+    }
+    else
+    {
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Hello World!");
+    }
+}
+
+void loop() 
+{
+    // set the cursor to column 0, line 1
+    // (note: line 1 is the second row, since counting begins with 0):
+
 }
 
 /*********************************************************************************************************

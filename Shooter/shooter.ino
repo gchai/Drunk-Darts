@@ -15,8 +15,8 @@ void setup() {
     Wire.begin(1);
     Serial.begin(9600);
     pinMode(pin, OUTPUT);
-    attachInterrupt(digitalPinToInterrupt(0), test1, FALLING);
-    attachInterrupt(digitalPinToInterrupt(1), test2, FALLING);
+    attachInterrupt(digitalPinToInterrupt(0), test1, RISING);
+    attachInterrupt(digitalPinToInterrupt(1), test2, RISING);
     Wire.begin(1);
     Wire.onReceive(recieveEvent);
     //Serial.print(BAC);

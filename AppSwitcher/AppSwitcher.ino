@@ -43,8 +43,6 @@ void loop()
         lcd.clear();
         unsigned int ppm = map(sensorReading, 750, 1024, 200 ,800);
         unsigned int bac = map (ppm, 200,800,10,50);
-        //float BAC = ppm/2600;
-        //int BAC = ppm;
         unsigned int BAC = ppm*100;
         unsigned int temp=BAC/26;
         lcd.setCursor(0, 0);
@@ -55,11 +53,7 @@ void loop()
         lcd.print(temp);
         finalbac=temp;
         }
-        //lcd.print(BAC);}
         else{
-        //Wire.beginTransmission(1);
-        //Wire.write("BAC is too low!");
-        //Wire.endTransmission();
         lcd.clear();
         lcd.setRGB(255,255,255);
         lcd.setCursor(0,0);
@@ -93,13 +87,13 @@ void loop()
 }
 
 void test1() {
-    int tempvalue = map(finalbac,0,1000,1,5);
+    int tempvalue = map(finalbac,0,800,1,5);
     score += 100*tempvalue;
     Serial.println("YAY");
 }
 
 void test2() {
-    int tempvalue = map(finalbac,0,1000,1,5);
+    int tempvalue = map(finalbac,0,800,1,5);
     score += 200*tempvalue;
         Serial.println("YAY");
 }
